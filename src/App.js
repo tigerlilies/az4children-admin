@@ -9,17 +9,23 @@ import * as childAction from './actions/child';
 import './App.css';
 import Header from './components/Header';
 import ChildList from './components/ChildList';
+import ChildDetail from './components/ChildDetail';
 import ChildForm from './components/ChildForm';
 
 class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      children: []
-    };
+  // constructor() {
+  //   super();
+  //   this.state = {
+  //     children: []
+  //   };
+  // }
+
+  componentDidMount() {
+    this.props.childAction.fetchProfiles();
   }
 
   render() {
+    console.log('in App >>> props', this.props);
     const history = createBrowserHistory();
 
     return (
@@ -39,15 +45,13 @@ class App extends Component {
                 <div className="col">
                   <Switch>
                     <Route exact path="/" component={ChildList} />
+                    <Route exact path="/childDetail/:id" component={ChildDetail} />
                     <Route exact path="/child/add" component={ChildForm} />
                   </Switch>
                 </div>
               </div>
             </div>
           </div>
-
-
-
         </div>
       </Router>
     );

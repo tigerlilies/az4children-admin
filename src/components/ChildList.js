@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import Child from './Child';
 
 class ChildList extends Component {
+  getChildList() {
+    return this.props.children.map(child =>
+      <Child key={child.id} child={child} />
+    );
+  }
 
   render() {
     return (
@@ -29,9 +35,7 @@ class ChildList extends Component {
                   </tr>
                 </thead>
                 <tbody>
-                  <Child />
-                  <Child />
-                  <Child />
+                  {this.getChildList()}
                 </tbody>
               </table>
             </div>
@@ -43,4 +47,10 @@ class ChildList extends Component {
 
 }
 
-export default ChildList;
+function mapStateToProps(state, props) {
+  return {
+    children: state.children
+  }
+}
+
+export default connect(mapStateToProps, null)(ChildList)

@@ -5,12 +5,19 @@ import { bindActionCreators } from 'redux';
 import * as childAction from '../actions/child';
 
 const Child = (props) => {
+  let { id, Firstname, Lastname, Age, Gender } = props.child;
   return(
     <tr>
-      <td>John</td>
-      <td>Doe</td>
-      <td>M</td>
-      <td>10</td>
+      <td>
+        <Link className="view-link"
+          to={{
+          pathname: `/childDetail/${id}`,
+          state: { child: props.child }
+        }}>{Firstname}</Link>
+      </td>
+      <td>{Lastname}</td>
+      <td>{Gender}</td>
+      <td>{Age}</td>
       <td>
         <Link className="btn btn-outline-info" to={`/child/1`}><i className="fa fa-pencil" aria-hidden="true"></i>
         </Link> &nbsp;

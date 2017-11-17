@@ -29,6 +29,12 @@ class ChildForm extends Component {
               </div>
             </div>
             <div className="form-group">
+              <label htmlFor="photourl" className="col-lg-2 control-label">First Name:</label>
+              <div className="col-lg-10">
+                <Field name="photourl" component="input" type="text" className="form-control" placeholder="Enter the photo URL" autoComplete="off" />
+              </div>
+            </div>
+            <div className="form-group">
               <label htmlFor="age" className="col-lg-2 control-label">Age:</label>
               <div className="col-lg-10">
                 <Field name="age" component="input" type="text" className="form-control" placeholder="Enter the age" autoComplete="off" />
