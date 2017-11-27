@@ -1,6 +1,7 @@
 import axios from 'axios';
 import config from '../config';
 
+//local host:3000
 const API_URL = config.API_URL;
 
 export const fetchProfiles = () => {

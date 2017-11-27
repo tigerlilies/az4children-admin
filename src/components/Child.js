@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import * as childAction from '../actions/child';
 
 const Child = (props) => {
-  let { id, Firstname, Lastname, Age, Gender } = props.child;
+  let { id, firstname, lastname, age, gender } = props.child;
   return(
     <tr>
       <td>
@@ -13,11 +13,11 @@ const Child = (props) => {
           to={{
           pathname: `/childDetail/${id}`,
           state: { child: props.child }
-        }}>{Firstname}</Link>
+        }}>{firstname}</Link>
       </td>
-      <td>{Lastname}</td>
-      <td>{Gender}</td>
-      <td>{Age}</td>
+      <td>{lastname}</td>
+      <td>{gender}</td>
+      <td>{age}</td>
       <td>
         <Link className="btn btn-outline-info" to={`/child/1`}><i className="fa fa-pencil" aria-hidden="true"></i>
         </Link> &nbsp;
