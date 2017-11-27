@@ -10,3 +10,24 @@ export const fetchProfiles = () => {
     payload: axios.get(`${API_URL}/api/profiles`)
   });
 }
+
+export const addChild = (child) => {
+  return ({
+    type: 'CHILD_ADD',
+    payload: axios.post(`${API_URL}/api/profiles`, child)
+  });
+}
+
+export const deleteChild = (id, child) => {
+  return ({
+    type: 'CHILD_DELETE',
+    payload: axios.delete(`${API_URL}/api/profiles/${id}`, child)
+  });
+}
+
+export const updateClient = (id, child) => {
+  return ({
+    type: 'CHILD_UPDATE',
+    payload: axios.patch(`${API_URL}/api/profiles/${id}`, child)
+  });
+}

@@ -29,7 +29,7 @@ class ChildForm extends Component {
               </div>
             </div>
             <div className="form-group">
-              <label htmlFor="photourl" className="col-lg-2 control-label">First Name:</label>
+              <label htmlFor="photourl" className="col-lg-2 control-label">Photo URL:</label>
               <div className="col-lg-10">
                 <Field name="photourl" component="input" type="text" className="form-control" placeholder="Enter the photo URL" autoComplete="off" />
               </div>

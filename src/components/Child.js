@@ -24,7 +24,7 @@ const Child = (props) => {
         state: { child: props.child }
       }}><i className="fa fa-pencil" aria-hidden="true"></i>
         </Link> &nbsp;
-        <a className="btn btn-outline-danger" onClick={() => props.childAction.deleteChild('', '')} aria-label="Delete">
+        <a className="btn btn-outline-danger" onClick={() => props.childAction.deleteChild(props.child.id, props.child)} aria-label="Delete">
           <i className="fa fa-trash-o" aria-hidden="true"></i>
         </a>
       </td>
