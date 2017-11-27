@@ -19,7 +19,10 @@ const Child = (props) => {
       <td>{gender}</td>
       <td>{age}</td>
       <td>
-        <Link className="btn btn-outline-info" to={`/child/1`}><i className="fa fa-pencil" aria-hidden="true"></i>
+        <Link className="btn btn-outline-info" to={{
+        pathname: `/childDetail/${id}`,
+        state: { child: props.child }
+      }}><i className="fa fa-pencil" aria-hidden="true"></i>
         </Link> &nbsp;
         <a className="btn btn-outline-danger" onClick={() => props.childAction.deleteChild('', '')} aria-label="Delete">
           <i className="fa fa-trash-o" aria-hidden="true"></i>
