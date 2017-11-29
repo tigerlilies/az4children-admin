@@ -1,26 +1,30 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import Child from './Child';
+import * as childAction from '../actions/child';
+
 
 const ChildDetail = (props) => {
   console.log('in ChildDetail >>> props', props);
-  let { Firstname, Lastname, Age, Gender, PhotoURL } = props.location.state.child;
+  let { firstname, lastname, age, gender, photoURL } = props.location.state.child;
   return (
     <div className="container">
       <br />
       <div className="row">
         <div className="col-md-3">
-          <img src={PhotoURL} width="250px" />
+          <img src={photoURL} width="250px" />
         </div>
         <div className="col-md-9">
           <div className="card">
             <div className="card-header"><strong>
-              {`${Firstname} ${Lastname}`}
+              {`${firstname} ${lastname}`}
             </strong></div>
             <ul className="list-group list-group-flush">
-              <li className="list-group-item">First name: {Firstname}</li>
-              <li className="list-group-item">Last name: {Lastname}</li>
-              <li className="list-group-item">Age: {Age}</li>
-              <li className="list-group-item">Gender: {Gender}</li>
+              <li className="list-group-item">First name: {firstname}</li>
+              <li className="list-group-item">Last name: {lastname}</li>
+              <li className="list-group-item">Age: {age}</li>
+              <li className="list-group-item">Gender: {gender}</li>
             </ul>
           </div>
           <br />

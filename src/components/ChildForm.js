@@ -7,6 +7,37 @@ import * as childAction from '../actions/child';
 
 class ChildForm extends Component {
 
+  constructor() {
+    super();
+    this.state = {
+      redirect: false
+    };
+  }
+
+  processSubmit = (values) => {
+    let client = {
+      lastname: values.lname,
+      firstname: values.fname,
+      age: values.age,
+      gender: values.gender,
+      phone: values.phone,
+      email: values.email,
+      source: values.source,
+      assignedto: values.assignedto,
+      comments: values.comments
+    };
+
+    if (this.props.match.params.id === 'add') {
+      this.props.clientAction.addClient(client).then(() => {
+        this.setState({ redirect: true });
+      });
+    } else {
+      this.props.clientAction.updateClient(parseInt(this.props.match.params.id, 10), client).then(() => {
+        this.setState({ redirect: true });
+      });
+    }
+  }
+
   render() {
     return (
       <div className="container">
@@ -29,12 +60,6 @@ class ChildForm extends Component {
               </div>
             </div>
             <div className="form-group">
-              <label htmlFor="photourl" className="col-lg-2 control-label">First Name:</label>
-              <div className="col-lg-10">
-                <Field name="photourl" component="input" type="text" className="form-control" placeholder="Enter the photo URL" autoComplete="off" />
-              </div>
-            </div>
-            <div className="form-group">
               <label htmlFor="age" className="col-lg-2 control-label">Age:</label>
               <div className="col-lg-10">
                 <Field name="age" component="input" type="text" className="form-control" placeholder="Enter the age" autoComplete="off" />
@@ -43,7 +68,10 @@ class ChildForm extends Component {
             <div className="form-group">
               <label htmlFor="gender" className="col-lg-2 control-label">Gender:</label>
               <div className="col-lg-10">
-                <Field name="gender" component="input" type="text" className="form-control" placeholder="Enter the gender" autoComplete="off" />
+                <div className="btn-group" role="group" aria-label="Basic example">
+                  <button type="button" name="gender" value="boy" className="btn btn-primary">Boy</button>
+                  <button type="button"  name="gender" value="girl" className="btn btn-danger">Girl</button>
+                </div>
               </div>
             </div>
             <div className="form-group">
@@ -109,15 +137,14 @@ class ChildForm extends Component {
             <div className="form-group">
               <label htmlFor="zone" className="col-lg-2 control-label">Zone:</label>
               <div className="col-lg-10">
-                <Field name="zone" component="input" type="text" className="form-control" placeholder="Enter the zone" autoComplete="off" />
+                <div className="btn-group" role="group" aria-label="Basic example">
+                <button type="button"  name="north" value="north" className="btn btn-secondary">North</button>
+                <button type="button"  name="east" value="east" className="btn btn-secondary">East</button>
+                <button type="button"  name="south" value="south" className="btn btn-secondary">South</button>
+                <button type="button"  name="west" value="west" className="btn btn-secondary">West</button>
+                </div>
               </div>
             </div>
-
-
-
-
-
-
             <div className="form-group">
               <div className="col-lg-10 col-lg-offset-2">
                 <button type="submit" className="btn btn-outline-info">Submit</button> &nbsp;
