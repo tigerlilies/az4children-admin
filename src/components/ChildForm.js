@@ -29,12 +29,6 @@ class ChildForm extends Component {
               </div>
             </div>
             <div className="form-group">
-              <label htmlFor="photourl" className="col-lg-2 control-label">Photo URL:</label>
-              <div className="col-lg-10">
-                <Field name="photourl" component="input" type="text" className="form-control" placeholder="Enter the photo URL" autoComplete="off" />
-              </div>
-            </div>
-            <div className="form-group">
               <label htmlFor="age" className="col-lg-2 control-label">Age:</label>
               <div className="col-lg-10">
                 <Field name="age" component="input" type="text" className="form-control" placeholder="Enter the age" autoComplete="off" />
@@ -43,7 +37,10 @@ class ChildForm extends Component {
             <div className="form-group">
               <label htmlFor="gender" className="col-lg-2 control-label">Gender:</label>
               <div className="col-lg-10">
-                <Field name="gender" component="input" type="text" className="form-control" placeholder="Enter the gender" autoComplete="off" />
+                <div className="btn-group" role="group" aria-label="Basic example">
+                  <button type="button" class="btn btn-primary">Boy</button>
+                  <button type="button" class="btn btn-danger">Girl</button>
+                </div>
               </div>
             </div>
             <div className="form-group">
@@ -109,15 +106,14 @@ class ChildForm extends Component {
             <div className="form-group">
               <label htmlFor="zone" className="col-lg-2 control-label">Zone:</label>
               <div className="col-lg-10">
-                <Field name="zone" component="input" type="text" className="form-control" placeholder="Enter the zone" autoComplete="off" />
+                <div className="btn-group" role="group" aria-label="Basic example">
+                  <button type="button" class="btn btn-secondary">North</button>
+                  <button type="button" class="btn btn-secondary">South</button>
+                  <button type="button" class="btn btn-secondary">West</button>
+                  <button type="button" class="btn btn-secondary">East</button>
+                </div>
               </div>
             </div>
-
-
-
-
-
-
             <div className="form-group">
               <div className="col-lg-10 col-lg-offset-2">
                 <button type="submit" className="btn btn-outline-info">Submit</button> &nbsp;
