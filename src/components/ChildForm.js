@@ -7,6 +7,37 @@ import * as childAction from '../actions/child';
 
 class ChildForm extends Component {
 
+  constructor() {
+    super();
+    this.state = {
+      redirect: false
+    };
+  }
+
+  processSubmit = (values) => {
+    let client = {
+      lastname: values.lname,
+      firstname: values.fname,
+      age: values.age,
+      gender: values.gender,
+      phone: values.phone,
+      email: values.email,
+      source: values.source,
+      assignedto: values.assignedto,
+      comments: values.comments
+    };
+
+    if (this.props.match.params.id === 'add') {
+      this.props.clientAction.addClient(client).then(() => {
+        this.setState({ redirect: true });
+      });
+    } else {
+      this.props.clientAction.updateClient(parseInt(this.props.match.params.id, 10), client).then(() => {
+        this.setState({ redirect: true });
+      });
+    }
+  }
+
   render() {
     return (
       <div className="container">
@@ -38,8 +69,8 @@ class ChildForm extends Component {
               <label htmlFor="gender" className="col-lg-2 control-label">Gender:</label>
               <div className="col-lg-10">
                 <div className="btn-group" role="group" aria-label="Basic example">
-                  <button type="button" class="btn btn-primary">Boy</button>
-                  <button type="button" class="btn btn-danger">Girl</button>
+                  <button type="button" name="gender" value="boy" className="btn btn-primary">Boy</button>
+                  <button type="button"  name="gender" value="girl" className="btn btn-danger">Girl</button>
                 </div>
               </div>
             </div>
@@ -107,10 +138,10 @@ class ChildForm extends Component {
               <label htmlFor="zone" className="col-lg-2 control-label">Zone:</label>
               <div className="col-lg-10">
                 <div className="btn-group" role="group" aria-label="Basic example">
-                  <button type="button" class="btn btn-secondary">North</button>
-                  <button type="button" class="btn btn-secondary">South</button>
-                  <button type="button" class="btn btn-secondary">West</button>
-                  <button type="button" class="btn btn-secondary">East</button>
+                <button type="button"  name="north" value="north" className="btn btn-secondary">North</button>
+                <button type="button"  name="east" value="east" className="btn btn-secondary">East</button>
+                <button type="button"  name="south" value="south" className="btn btn-secondary">South</button>
+                <button type="button"  name="west" value="west" className="btn btn-secondary">West</button>
                 </div>
               </div>
             </div>
