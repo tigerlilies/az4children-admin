@@ -5,6 +5,52 @@ import { Link } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
 import * as childAction from '../actions/child';
 
+import Child from "./Child";
+
+const required = value => (value ? undefined : "This field is required");
+
+const renderField = ({
+  input,
+  label,
+  type,
+  placeholder,
+  className,
+  meta: { touched, error, warning }
+}) => (
+  <div>
+    <label>{label}</label>
+    <div>
+      <input
+        {...input}
+        placeholder={placeholder}
+        type={type}
+        className={className}
+      />
+      {touched &&
+        ((error && <span className="errorMsg">{error}</span>) ||
+          (warning && <span>{warning}</span>))}
+    </div>
+  </div>
+);
+
+const renderSelectField = ({
+  input,
+  label,
+  type,
+  children,
+  meta: { touched, error }
+}) => (
+  <div>
+    <label className="col-lg-10 control-label">{label}</label>
+    <div className="col-lg-10">
+      <select className="form-control" {...input}>
+        {children}
+      </select>
+      {touched && error && <span className="errorMsg">{error}</span>}
+    </div>
+  </div>
+);
+
 class ChildForm extends Component {
 
   constructor() {
@@ -13,6 +59,12 @@ class ChildForm extends Component {
       redirect: false
     };
   }
+
+  buildChild = () => {
+    return this.props.houses.map((child, i) => (
+      <Child key={i} child={child} />
+    ));
+  };
 
   processSubmit = (values) => {
     let client = {
@@ -34,7 +86,7 @@ class ChildForm extends Component {
     };
 
     if (this.props.match.params.id === 'add') {
-      this.props.clientAction.addClient(client).then(() => {
+      this.props.clientAction.addChild(client).then(() => {
         this.setState({ redirect: true });
       });
     } else {
