@@ -5,6 +5,52 @@ import { Link } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
 import * as childAction from '../actions/child';
 
+import Child from "./Child";
+
+const required = value => (value ? undefined : "This field is required");
+
+const renderField = ({
+  input,
+  label,
+  type,
+  placeholder,
+  className,
+  meta: { touched, error, warning }
+}) => (
+  <div>
+    <label>{label}</label>
+    <div>
+      <input
+        {...input}
+        placeholder={placeholder}
+        type={type}
+        className={className}
+      />
+      {touched &&
+        ((error && <span className="errorMsg">{error}</span>) ||
+          (warning && <span>{warning}</span>))}
+    </div>
+  </div>
+);
+
+const renderSelectField = ({
+  input,
+  label,
+  type,
+  children,
+  meta: { touched, error }
+}) => (
+  <div>
+    <label className="col-lg-10 control-label">{label}</label>
+    <div className="col-lg-10">
+      <select className="form-control" {...input}>
+        {children}
+      </select>
+      {touched && error && <span className="errorMsg">{error}</span>}
+    </div>
+  </div>
+);
+
 class ChildForm extends Component {
 
   constructor() {
@@ -14,21 +60,33 @@ class ChildForm extends Component {
     };
   }
 
+  buildChild = () => {
+    return this.props.houses.map((child, i) => (
+      <Child key={i} child={child} />
+    ));
+  };
+
   processSubmit = (values) => {
     let client = {
       lastname: values.lname,
       firstname: values.fname,
       age: values.age,
       gender: values.gender,
-      phone: values.phone,
-      email: values.email,
-      source: values.source,
-      assignedto: values.assignedto,
-      comments: values.comments
+      summary: values.summary,
+      characteristic1: values.characteristic1,
+      characteristic2: values.characteristic2,
+      characteristic3: values.characteristic3,
+      need1: values.need1,
+      need2: values.need2,
+      need3: values.need3,
+      placement: values.placement,
+      placement_phone: values.placementphone,
+      placement_email: values.placementemail,
+      zone: values.zone
     };
 
     if (this.props.match.params.id === 'add') {
-      this.props.clientAction.addClient(client).then(() => {
+      this.props.clientAction.addChild(client).then(() => {
         this.setState({ redirect: true });
       });
     } else {
@@ -138,10 +196,10 @@ class ChildForm extends Component {
               <label htmlFor="zone" className="col-lg-2 control-label">Zone:</label>
               <div className="col-lg-10">
                 <div className="btn-group" role="group" aria-label="Basic example">
-                <button type="button"  name="north" value="north" className="btn btn-secondary">North</button>
-                <button type="button"  name="east" value="east" className="btn btn-secondary">East</button>
-                <button type="button"  name="south" value="south" className="btn btn-secondary">South</button>
-                <button type="button"  name="west" value="west" className="btn btn-secondary">West</button>
+                <button type="button"  name="zone" value="north" className="btn btn-secondary">North</button>
+                <button type="button"  name="zone" value="east" className="btn btn-secondary">East</button>
+                <button type="button"  name="zone" value="south" className="btn btn-secondary">South</button>
+                <button type="button"  name="zone" value="west" className="btn btn-secondary">West</button>
                 </div>
               </div>
             </div>
