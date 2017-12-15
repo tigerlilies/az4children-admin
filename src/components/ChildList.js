@@ -10,7 +10,9 @@ class ChildList extends Component {
     );
   }
 
+
   render() {
+    // console.log("List",this.props.children)
     return (
       <div className="container-fluid">
 
