@@ -22,7 +22,7 @@ class App extends Component {
   }
 
   render() {
-    console.log('in App >>> props', this.props);
+    // console.log('in App >>> props', this.props);
     const history = createBrowserHistory();
 
     return (
@@ -44,7 +44,7 @@ class App extends Component {
                     <Route exact path="/" component={ChildList} />
                     <Route exact path="/login" component={Login} />
                     <Route exact path="/childDetail/:id" component={ChildDetail} />
-                    <Route exact path="/child/add" component={ChildForm} />
+                    <Route exact path="/child/:id" component={ChildForm} />
                   </Switch>
                 </div>
               </div>
