@@ -66,8 +66,8 @@ class ChildForm extends Component {
     // console.log("ProcessSubmit",values)
     console.log("Props",this.props)
     let child = {
-      lastname: values.lname,
-      firstname: values.fname,
+      lastname: values.lastname,
+      firstname: values.firstname,
       age: values.age,
       gender: values.gender,
       summary: values.summary,
@@ -78,13 +78,14 @@ class ChildForm extends Component {
       need2: values.need2,
       need3: values.need3,
       placement: values.placement,
-      placement_phone: values.placementphone,
-      placement_email: values.placementemail,
+      placement_phone: values.placement_phone,
+      placement_email: values.placement_email,
       zone: values.zone
     };
 
     if (this.props.match.params.id === 'add') {
       this.props.childAction.addChild(child).then(() => {
+       this.props.childAction.fetchProfiles();
        this.props.history.push("/")
       });
     } else {
@@ -92,7 +93,8 @@ class ChildForm extends Component {
       this.props.childAction
         .updateChild(this.props.match.params.id, child)
         .then(() => {
-          this.props.history.push("/child");
+          this.props.childAction.fetchProfiles();
+          this.props.history.push("/");
         });
       }
     }
@@ -114,7 +116,7 @@ class ChildForm extends Component {
               <label htmlFor="lname" className="col-lg-2 control-label">Last Name:</label>
               <div className="col-lg-10">
                 <Field
-                  name="lname"
+                  name="lastname"
                   component={renderField}
                   type="text"
                   className="form-control"
@@ -127,7 +129,7 @@ class ChildForm extends Component {
               <label htmlFor="fname" className="col-lg-2 control-label">First Name:</label>
               <div className="col-lg-10">
                 <Field
-                 name="fname"
+                 name="firstname"
                  component={renderField}
                  type="text"
                  className="form-control"
@@ -164,13 +166,13 @@ class ChildForm extends Component {
               <label htmlFor="gender" className="col-lg-2 control-label">Gender:</label>
               <div className="col-lg-10">
                 <label>
-                  <Field type="radio" name="gender" component="input" value="boy" />
+                  <Field type="radio" name="gender" component="input" value="M" />
                   {' '}
                   Boy
                 </label>
                 <br />
                 <label>
-                  <Field name="gender" component="input" type="radio" value="girl" />
+                  <Field name="gender" component="input" type="radio" value="F" />
                   {' '}
                   Girl
                 </label>
@@ -227,13 +229,13 @@ class ChildForm extends Component {
             <div className="form-group">
               <label htmlFor="placementphone" className="col-lg-2 control-label">Placement Phone#:</label>
               <div className="col-lg-10">
-                <Field name="placementphone" component={renderField} type="text" className="form-control" placeholder="Enter the placement phone#" autoComplete="off" />
+                <Field name="placement_phone" component={renderField} type="text" className="form-control" placeholder="Enter the placement phone#" autoComplete="off" />
               </div>
             </div>
             <div className="form-group">
               <label htmlFor="placementemail" className="col-lg-2 control-label">Placement Email:</label>
               <div className="col-lg-10">
-                <Field name="placementemail" component={renderField} type="text" className="form-control" placeholder="Enter the placement email" autoComplete="off" />
+                <Field name="placement_email" component={renderField} type="text" className="form-control" placeholder="Enter the placement email" autoComplete="off" />
               </div>
             </div>
             <div className="form-group">
@@ -241,9 +243,9 @@ class ChildForm extends Component {
               <div className="col-lg-10">
                 <Field name="zone" component="select">
                   <option />
-                  <option value="north">North</option>
-                  <option value="west">West</option>
-                  <option value="east">East</option>
+                  <option value="North">North</option>
+                  <option value="West">West</option>
+                  <option value="East">East</option>
                 </Field>
               </div>
             </div>
@@ -265,6 +267,7 @@ class ChildForm extends Component {
 function mapStateToProps(state, props) {
   return {
     children: state.children,
+    initialValues: props.location.state ? props.location.state.child : null
   }
 }
 

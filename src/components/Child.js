@@ -20,7 +20,7 @@ const Child = (props) => {
       <td>{age}</td>
       <td>
         <Link className="btn btn-outline-info" to={{
-        pathname: `/childDetail/${id}`,
+        pathname: `/child/${id}`,
         state: { child: props.child }
       }}><i className="fa fa-pencil" aria-hidden="true"></i>
         </Link> &nbsp;

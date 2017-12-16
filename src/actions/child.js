@@ -25,7 +25,7 @@ export const deleteChild = (id, child) => {
   });
 }
 
-export const updateClient = (id, child) => {
+export const updateChild = (id, child) => {
   return ({
     type: 'CHILD_UPDATE',
     payload: axios.patch(`${API_URL}/api/profiles/${id}`, child)
