@@ -7,7 +7,7 @@ import * as childAction from '../actions/child';
 
 const ChildDetail = (props) => {
   console.log('in ChildDetail >>> props', props);
-  let { firstname, lastname, age, gender, photoURL } = props.location.state.child;
+  let { firstname, lastname, age, gender, summary, characteristic1, characteristic2, characteristic3, need1, need2, need3, placement, placement_phone, placement_email, zone } = props.location.state.child;
   return (
     <div className="container">
       <br />
@@ -18,10 +18,21 @@ const ChildDetail = (props) => {
               {`${firstname} ${lastname}`}
             </strong></div>
             <ul className="list-group list-group-flush">
-              <li className="list-group-item"><strong>First name</strong><br/> {firstname}</li>
-              <li className="list-group-item">Last name: {lastname}</li>
-              <li className="list-group-item">Age: {age}</li>
-              <li className="list-group-item">Gender: {gender}</li>
+              <li className="list-group-item"><strong><u>First name</u></strong><br/> {firstname}</li>
+              <li className="list-group-item"><strong><u>Last name</u></strong><br/> {lastname}</li>
+              <li className="list-group-item"><strong><u>Age</u></strong><br/> {age}</li>
+              <li className="list-group-item"><strong><u>Gender </u></strong><br/>{gender}</li>
+              <li className="list-group-item"><strong><u>Summary </u></strong><br/>{summary}</li>
+              <li className="list-group-item"><strong><u>Characteristic1 </u></strong><br/>{characteristic1}</li>
+              <li className="list-group-item"><strong><u>Characteristic2 </u></strong><br/>{characteristic2}</li>
+              <li className="list-group-item"><strong><u>Characteristic3 </u></strong><br/>{characteristic3}</li>
+              <li className="list-group-item"><strong><u>Need1 </u></strong><br/>{need1}</li>
+              <li className="list-group-item"><strong><u>Need2 </u></strong><br/>{need2}</li>
+              <li className="list-group-item"><strong><u>Need3 </u></strong><br/>{need3}</li>
+              <li className="list-group-item"><strong><u>Placement </u></strong><br/>{placement}</li>
+              <li className="list-group-item"><strong><u>Placement phone </u></strong><br/>{placement_phone}</li>
+              <li className="list-group-item"><strong><u>Placement Email </u></strong><br/>{placement_email}</li>
+              <li className="list-group-item"><strong><u>Zone </u></strong><br/>{zone}</li>
             </ul>
           </div>
           <br />
