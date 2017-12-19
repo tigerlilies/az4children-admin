@@ -3,10 +3,14 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
+import DatePicker from 'react-datepicker';
+import  moment  from 'moment';
+
+
 //To use type
 import * as childAction from '../actions/child';
+import 'react-datepicker/dist/react-datepicker.css';
 
-import Child from "./Child";
 
 const required = value => (value ? undefined : "This field is required");
 
@@ -40,7 +44,7 @@ const renderSelectField = ({
   label,
   type,
   children,
-  meta: { touched, error }
+  meta: { touched, error, warning }
 }) => (
   <div>
     <label className="col-lg-10 control-label">{label}</label>
@@ -53,6 +57,20 @@ const renderSelectField = ({
   </div>
 );
 
+const renderDatePicker = (
+{
+  input,
+  label,
+  type,
+  placeholder,
+  className,
+  meta: { touched, error, warning }
+}) => (
+  <div>
+        <DatePicker {...input} dateForm="MM/DD/YYYY" selected={input.value ? moment(input.value) : null} />
+        {touched && error && <span>{error}</span>}
+  </div>
+);
 
 class ChildForm extends Component {
 
@@ -80,7 +98,8 @@ class ChildForm extends Component {
       placement: values.placement,
       placement_phone: values.placement_phone,
       placement_email: values.placement_email,
-      zone: values.zone
+      zone: values.zone,
+      assign_at: values.assign_at
     };
 
     if (this.props.match.params.id === 'add') {
@@ -121,6 +140,7 @@ class ChildForm extends Component {
                   type="text"
                   className="form-control"
                   placeholder="Enter the last name"
+                  autoComplete="off"
                   validate={[required]}
                   />
               </div>
@@ -133,7 +153,9 @@ class ChildForm extends Component {
                  component={renderField}
                  type="text"
                  className="form-control"
-                 placeholder="Enter the first name" validate={[required]}
+                 placeholder="Enter the first name"
+                 autoComplete="off"
+                 validate={[required]}
                 />
               </div>
             </div>
@@ -142,6 +164,7 @@ class ChildForm extends Component {
               <div className="col-lg-10">
                 <Field name="age" component="select">
                   <option />
+                  <option value="5">5</option>
                   <option value="6">6</option>
                   <option value="7">7</option>
                   <option value="8">8</option>
@@ -181,61 +204,125 @@ class ChildForm extends Component {
             <div className="form-group">
               <label htmlFor="summary" className="col-lg-2 control-label">Summary:</label>
               <div className="col-lg-10">
-                <Field name="summary" component={renderField} type="text" className="form-control" placeholder="Enter the summary" autoComplete="off" />
+                <Field name="summary"
+                 component={renderField}
+                 type="text"
+                 className="form-control"
+                 placeholder="Enter the summary" autoComplete="off"
+                 validate={[required]}
+                 />
               </div>
             </div>
             <div className="form-group">
               <label htmlFor="characteristic1" className="col-lg-2 control-label">Characteristic 1:</label>
               <div className="col-lg-10">
-                <Field name="characteristic1" component={renderField} type="text" className="form-control" placeholder="Enter the characteristic" autoComplete="off" />
+                <Field
+                  name="characteristic1" component={renderField}
+                  type="text"
+                  className="form-control"
+                  placeholder="Enter the characteristic" autoComplete="off"
+                  validate={[required]}
+                />
               </div>
             </div>
             <div className="form-group">
               <label htmlFor="characteristic2" className="col-lg-2 control-label">Characteristic 2:</label>
               <div className="col-lg-10">
-                <Field name="characteristic2" component={renderField} type="text" className="form-control" placeholder="Enter the characteristic" autoComplete="off" />
+                <Field
+                  name="characteristic2" component={renderField}
+                  type="text"
+                  className="form-control"
+                  placeholder="Enter the characteristic" autoComplete="off"
+                  validate={[required]}
+                />
               </div>
             </div>
             <div className="form-group">
               <label htmlFor="characteristic3" className="col-lg-2 control-label">Characteristic 3:</label>
               <div className="col-lg-10">
-                <Field name="characteristic3" component={renderField} type="text" className="form-control" placeholder="Enter the characteristic" autoComplete="off" />
+                <Field
+                  name="characteristic3" component={renderField}
+                  type="text"
+                  className="form-control"
+                  placeholder="Enter the characteristic" autoComplete="off"
+                  validate={[required]}
+                />
               </div>
             </div>
             <div className="form-group">
               <label htmlFor="need1" className="col-lg-2 control-label">Need 1:</label>
               <div className="col-lg-10">
-                <Field name="need1" component={renderField} type="text" className="form-control" placeholder="Enter the need" autoComplete="off" />
+                <Field
+                  name="need1"
+                  component={renderField}
+                  type="text"
+                  className="form-control"
+                  placeholder="Enter the need" autoComplete="off"
+                  validate={[required]}
+                />
               </div>
             </div>
             <div className="form-group">
               <label htmlFor="need2" className="col-lg-2 control-label">Need 2:</label>
               <div className="col-lg-10">
-                <Field name="need2" component={renderField} type="text" className="form-control" placeholder="Enter the need" autoComplete="off" />
+                <Field
+                  name="need2"
+                  component={renderField}
+                  type="text"
+                  className="form-control"
+                  placeholder="Enter the need" autoComplete="off"
+                  validate={[required]}
+               />
               </div>
             </div>
             <div className="form-group">
               <label htmlFor="need3" className="col-lg-2 control-label">Need 3:</label>
               <div className="col-lg-10">
-                <Field name="need3" component={renderField} type="text" className="form-control" placeholder="Enter the need" autoComplete="off" />
+                <Field
+                  name="need3"
+                  component={renderField}
+                  type="text"
+                  className="form-control"
+                  placeholder="Enter the need" autoComplete="off"
+                  validate={[required]}
+                />
               </div>
             </div>
             <div className="form-group">
               <label htmlFor="placement" className="col-lg-2 control-label">Placement:</label>
               <div className="col-lg-10">
-                <Field name="placement" component={renderField} type="text" className="form-control" placeholder="Enter the placement" autoComplete="off" />
+                <Field
+                  name="placement"
+                  component={renderField}
+                  type="text"
+                  className="form-control"
+                  placeholder="Enter the placement" autoComplete="off"
+                  validate={[required]}
+                />
               </div>
             </div>
             <div className="form-group">
               <label htmlFor="placementphone" className="col-lg-2 control-label">Placement Phone#:</label>
               <div className="col-lg-10">
-                <Field name="placement_phone" component={renderField} type="text" className="form-control" placeholder="Enter the placement phone#" autoComplete="off" />
+                <Field
+                  name="placement_phone"   component={renderField}
+                  type="text"
+                  className="form-control"
+                  placeholder="Enter the placement phone#" autoComplete="off"
+                  validate={[required]}
+                />
               </div>
             </div>
             <div className="form-group">
               <label htmlFor="placementemail" className="col-lg-2 control-label">Placement Email:</label>
               <div className="col-lg-10">
-                <Field name="placement_email" component={renderField} type="text" className="form-control" placeholder="Enter the placement email" autoComplete="off" />
+                <Field
+                  name="placement_email" component={renderField}
+                  type="email"
+                  className="form-control"
+                  placeholder="Enter the placement email" autoComplete="off"
+                  validate={[required]}
+                />
               </div>
             </div>
             <div className="form-group">
@@ -247,6 +334,23 @@ class ChildForm extends Component {
                   <option value="West">West</option>
                   <option value="East">East</option>
                 </Field>
+              </div>
+            </div>
+            <div className="form-group">
+              <label htmlFor="assign_at" className="col-lg-2 control-label">Mentor assigned date:</label>
+              <div className="col-lg-10">
+              <Field
+                name="assign_at"
+                inputValueFormat="YYYY-MM-DD"
+                dateFormat="L"
+                dateFormatCalendar="dddd"
+                fixedHeight
+                showMonthDropdown
+                showYearDropdown
+                dropdownMode="select"
+                normalize={value => (value ? moment(value).format('YYYY-MM-DD') : null)}
+                component={renderDatePicker}
+              />
               </div>
             </div>
             <div className="form-group">

@@ -30,3 +30,7 @@ a:focus, a:hover {
 .view-link {
   color: inherit;
 }
+
+.errorMsg {
+  color: red;
+}
