@@ -82,7 +82,7 @@ class ChildForm extends Component {
 
   processSubmit = (values) => {
     // console.log("ProcessSubmit",values)
-    console.log("Props",this.props)
+    // console.log("Props",this.props)
     let child = {
       lastname: values.lastname,
       firstname: values.firstname,
@@ -120,7 +120,6 @@ class ChildForm extends Component {
 
 
   render() {
-    console.log("ChildForm", this.props.children)
     return (
       <div className="container">
         <br />

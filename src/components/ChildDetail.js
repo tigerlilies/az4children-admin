@@ -7,7 +7,7 @@ import * as childAction from '../actions/child';
 
 const ChildDetail = (props) => {
   console.log('in ChildDetail >>> props', props);
-  let { firstname, lastname, age, gender, summary, characteristic1, characteristic2, characteristic3, need1, need2, need3, placement, placement_phone, placement_email, zone } = props.location.state.child;
+  let { firstname, lastname, age, gender, summary, characteristic1, characteristic2, characteristic3, need1, need2, need3, placement, placement_phone, placement_email, zone, assign_at } = props.location.state.child;
   return (
     <div className="container">
       <br />
@@ -33,6 +33,7 @@ const ChildDetail = (props) => {
               <li className="list-group-item"><strong><u>Placement phone </u></strong><br/>{placement_phone}</li>
               <li className="list-group-item"><strong><u>Placement Email </u></strong><br/>{placement_email}</li>
               <li className="list-group-item"><strong><u>Zone </u></strong><br/>{zone}</li>
+              <li className="list-group-item"><strong><u>Mentor assigned date</u></strong><br/>{assign_at}</li>
             </ul>
           </div>
           <br />
@@ -41,7 +42,6 @@ const ChildDetail = (props) => {
           </Link>
         </div>
       </div>
-
     </div>
   );
 }
