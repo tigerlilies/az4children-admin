@@ -41,8 +41,8 @@ class App extends Component {
               <div className="row">
                 <div className="col">
                   <Switch>
-                    <Route exact path="/" component={ChildList} />
-                    <Route exact path="/login" component={Login} />
+                    <Route exact path="/" component={Login} />
+                    <Route exact path="/childList" component={ChildList} />
                     <Route exact path="/childDetail/:id" component={ChildDetail} />
                     <Route exact path="/child/:id" component={ChildForm} />
                   </Switch>

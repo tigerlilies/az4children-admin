@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
+
+//To use type
+import * as childAction from '../actions/child';
+import * as authAction from '../actions/auth';
 
 
 const required = value => (value ? undefined : "This field is required");
@@ -32,15 +39,18 @@ const renderField = (
 class Login extends Component {
 
   handleFormSubmit(values) {
-    console.log("Login HandleFormSubmit", values);
+    // console.log("Login HandleFormSubmit", values);
+    // console.log("Longin HandleForm Props", this.props)
     // Need to do something to log user in
-    
+    this.props.authAction.signinUser(values).then(() => {
+      this.props.childAction.fetchProfiles();
+      this.props.history.push("/childList")
+    });
   }
 
 
   render() {
-    const { handleSubmit, fields: { email, password }} = this.props;
-
+    const { handleSubmit} = this.props;
 
     return (
     <div className="container">
@@ -87,7 +97,16 @@ class Login extends Component {
   }
 }
 
-export default reduxForm({
+//Connect with action.
+function mapDispatchToProps(dispatch) {
+  return {
+    childAction: bindActionCreators(childAction, dispatch),
+    authAction: bindActionCreators(authAction, dispatch)
+  }
+}
+
+
+export default connect(null,mapDispatchToProps)(reduxForm({
   form: 'signin',
   fields: ['email', 'password']
-})(Login);
+})(Login));

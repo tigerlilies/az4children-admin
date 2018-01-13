@@ -6,7 +6,7 @@ import * as childAction from '../actions/child';
 
 
 const ChildDetail = (props) => {
-  console.log('in ChildDetail >>> props', props);
+  // console.log('in ChildDetail >>> props', props);
   let { firstname, lastname, age, gender, summary, characteristic1, characteristic2, characteristic3, need1, need2, need3, placement, placement_phone, placement_email, zone, assign_at } = props.location.state.child;
   return (
     <div className="container">
@@ -37,7 +37,7 @@ const ChildDetail = (props) => {
             </ul>
           </div>
           <br />
-          <Link to="/" className="btn btn-outline-info">
+          <Link to="/childList" className="btn btn-outline-info">
             Cancel
           </Link>
         </div>

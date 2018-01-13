@@ -105,7 +105,7 @@ class ChildForm extends Component {
     if (this.props.match.params.id === 'add') {
       this.props.childAction.addChild(child).then(() => {
        this.props.childAction.fetchProfiles();
-       this.props.history.push("/")
+       this.props.history.push("/childList")
       });
     } else {
       // console.log("update");
@@ -113,7 +113,7 @@ class ChildForm extends Component {
         .updateChild(this.props.match.params.id, child)
         .then(() => {
           this.props.childAction.fetchProfiles();
-          this.props.history.push("/");
+          this.props.history.push("/childList");
         });
       }
     }
@@ -355,7 +355,7 @@ class ChildForm extends Component {
             <div className="form-group">
               <div className="col-lg-10 col-lg-offset-2">
                 <button type="submit" className="btn btn-outline-info">Submit</button> &nbsp;
-                <Link to="/" className="btn btn-outline-info">Cancel</Link>
+                <Link to="/childList" className="btn btn-outline-info">Cancel</Link>
               </div>
             </div>
           </fieldset>

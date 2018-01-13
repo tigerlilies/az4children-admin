@@ -9,16 +9,16 @@ class Header extends Component {
   renderLinks() {
     return (
       <li className="nav-item">
-        <a className="nav-link" href="/login">Login</a>
+        <a className="nav-link" href="/">Login</a>
       </li>
     )
   }
-  
+
   render() {
     return (
       <ul className="nav justify-content-end">
         <li className="nav-item">
-          <a className="nav-link active" href="/">Home</a>
+          <a className="nav-link active" href="/childList">Home</a>
         </li>
         {this.renderLinks()}
       </ul>
