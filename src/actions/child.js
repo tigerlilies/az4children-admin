@@ -5,14 +5,13 @@ import config from '../config';
 const API_URL = config.API_URL;
 
 // Header for jwt token
-const head = {
-                headers: {
-                  authorization : localStorage.getItem('token')
-                }
-              }
+// const head = {
+//                 headers: {
+//                   authorization : localStorage.getItem('token')
+//                 }
+//               }
 
 export const fetchProfiles = (token) => {
-  console.log("FETCHPROFILES", token)
   return ({
     type: 'CHILD',
     payload: axios.get(`${API_URL}/api/profiles`, {
@@ -35,11 +34,6 @@ export const addChild = (child ,token) => {
 }
 
 export const deleteChild = (id, child,token) => {
-console.log("deletechild", {
-                headers: {
-                  authorization : token
-                }
-              })
   return ({
     type: 'CHILD_DELETE',
     payload: axios.delete(`${API_URL}/api/profiles/${id}`,  {

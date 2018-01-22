@@ -1,9 +1,7 @@
 import {
   AUTH_USER,
   UNAUTH_USER,
-  AUTH_ERROR,
-  FETCH_MESSAGE,
-  SIGNIN_USER
+  AUTH_ERROR
 } from '../actions/types';
 
 export default (state={}, action) => {

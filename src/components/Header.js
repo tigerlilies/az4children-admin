@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { bindActionCreators } from 'redux';
 
-//To use type
 import * as authAction from '../actions/auth';
 
+
 class Header extends Component {
+
+  componentWillMount(){
+    if (localStorage.getItem('token')){
+      this.props.authAction.checkUserLogin(localStorage.getItem('token'))
+    }
+  }
 
   renderLinks() {
     if (this.props.authenticated === true) {
@@ -43,4 +50,11 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(Header);
+function mapDispatchToProps(dispatch){
+  return {
+    authAction: bindActionCreators(authAction, dispatch)
+  }
+}
+
+
+export default connect(mapStateToProps,mapDispatchToProps)(Header);

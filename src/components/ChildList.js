@@ -20,7 +20,7 @@ class ChildList extends Component {
   }
 
   render() {
-    console.log("ChildList Props", localStorage.getItem('token'))
+    console.log("ChildList Props", this.props)
     return (
       <div className="container-fluid">
 

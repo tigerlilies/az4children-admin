@@ -1,8 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import Child from './Child';
-import * as childAction from '../actions/child';
+
 
 
 const ChildDetail = (props) => {

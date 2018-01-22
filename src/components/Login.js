@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
 
 //To use type
@@ -53,7 +52,7 @@ class Login extends Component {
   }
 
   render() {
-    const { handleSubmit, authenticated } = this.props;
+    const { handleSubmit } = this.props;
     console.log("LogIn Props", this.props)
     return (
     <div className="container">
@@ -103,10 +102,11 @@ class Login extends Component {
 
 //Connect with reducer and use as props
 function mapStateToProps(state) {
-  // console.log("mapStateToProps PROPS", props)
+  // console.log("Login mapStateToProps PROPS", state.auth)
   return {
     auth: state.auth,
-    authenticated: state.auth.authenticated
+    authenticated: state.auth.authenticated,
+    errorMessage: state.auth.error
   };
 }
 

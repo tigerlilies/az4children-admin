@@ -1,12 +1,9 @@
 import axios from 'axios';
-import { BrowserRouter, Link } from 'react-router-dom';
 import config from '../config';
 import {
   AUTH_USER,
   UNAUTH_USER,
-  AUTH_ERROR,
-  FETCH_MESSAGE,
-  SIGNIN_USER
+  AUTH_ERROR
 } from './types';
 
 const API_URL = config.API_URL;
@@ -38,6 +35,13 @@ export function authError(error) {
   }
 }
 
+export function checkUserLogin(token){
+  return function(dispatch){
+    dispatch({ type: AUTH_USER });
+  }
+}
+
+
 // When sign in user, send info( email/password) to server
 export function signinUser(values,history, fetchProfiles) {
   return function(dispatch){
@@ -47,7 +51,6 @@ export function signinUser(values,history, fetchProfiles) {
       dispatch({ type: AUTH_USER });
       //Save the JWT token
       localStorage.setItem('token',response.data.token);
-
       //redirect to the route '/childList'
       history.push("/childList")
       // BrowserRouter.push("/childList")
