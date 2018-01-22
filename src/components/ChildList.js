@@ -8,7 +8,7 @@ import * as childAction from '../actions/child';
 
 class ChildList extends Component {
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.childAction.fetchProfiles(localStorage.getItem('token'));
   }
 

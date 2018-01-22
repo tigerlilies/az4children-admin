@@ -79,7 +79,7 @@ class Login extends Component {
               <Field
                 name="password"
                 component={renderField}
-                type="text"
+                type="password"
                 className="form-control"
                 placeholder="Enter the password" autoComplete="off"
                 validate={[required]}

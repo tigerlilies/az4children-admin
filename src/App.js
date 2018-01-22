@@ -14,15 +14,14 @@ import ChildDetail from './components/ChildDetail';
 import ChildForm from './components/ChildForm';
 import Login from './components/Login';
 import Logout from './components/Logout';
+import RequireAuth from './components/require_auth';
 
 class App extends Component {
 
   //Connect to action child to call api
-  componentDidMount() {
-
-      this.props.childAction.fetchProfiles();
-
-  }
+  // componentDidMount() {
+  //     this.props.childAction.fetchProfiles();
+  // }
 
   render() {
     console.log('APP PROPS', this.props);
@@ -45,9 +44,9 @@ class App extends Component {
                   <Switch>
                     <Route exact path="/" component={Login} />
                     <Route exact path="/signout" component={Logout} />
-                    <Route exact path="/childList" component={ChildList} />
-                    <Route exact path="/childDetail/:id" component={ChildDetail} />
-                    <Route exact path="/child/:id" component={ChildForm} />
+                    <Route exact path="/childList" component={RequireAuth(ChildList)} />
+                    <Route exact path="/childDetail/:id" component={RequireAuth(ChildDetail)} />
+                    <Route exact path="/child/:id" component={RequireAuth(ChildForm)} />
                   </Switch>
                 </div>
               </div>
