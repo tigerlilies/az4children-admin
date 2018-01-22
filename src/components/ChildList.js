@@ -3,16 +3,24 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Child from './Child';
 
+import { bindActionCreators } from 'redux';
+import * as childAction from '../actions/child';
+
 class ChildList extends Component {
+
+  componentWillMount() {
+    this.props.childAction.fetchProfiles(localStorage.getItem('token'));
+  }
+
+
   getChildList() {
     return this.props.children.map(child =>
       <Child key={child.id} child={child} />
     );
   }
 
-
   render() {
-    // console.log("List",this.props.children)
+    console.log("ChildList Props", localStorage.getItem('token'))
     return (
       <div className="container-fluid">
 
@@ -49,10 +57,19 @@ class ChildList extends Component {
 
 }
 
-function mapStateToProps(state, props) {
+//Connect with action.
+function mapDispatchToProps(dispatch) {
   return {
-    children: state.children
+    childAction: bindActionCreators(childAction, dispatch)
   }
 }
 
-export default connect(mapStateToProps, null)(ChildList)
+//combine mapState and mapDispatch to a component
+function mapStateToProps(state, props) {
+  return {
+    children: state.children,
+    authenticated : state.auth
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ChildList)

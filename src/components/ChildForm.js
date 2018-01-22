@@ -102,15 +102,17 @@ class ChildForm extends Component {
       assign_at: values.assign_at
     };
 
+    let token = localStorage.getItem('token')
+
     if (this.props.match.params.id === 'add') {
-      this.props.childAction.addChild(child).then(() => {
+      this.props.childAction.addChild(child, token).then(() => {
        this.props.childAction.fetchProfiles();
        this.props.history.push("/childList")
       });
     } else {
       // console.log("update");
       this.props.childAction
-        .updateChild(this.props.match.params.id, child)
+        .updateChild(this.props.match.params.id, child, token)
         .then(() => {
           this.props.childAction.fetchProfiles();
           this.props.history.push("/childList");
@@ -368,6 +370,7 @@ class ChildForm extends Component {
 
 //Connect with reducer and use as props
 function mapStateToProps(state, props) {
+  console.log("CHILDFORM MAPSTATE", props)
   return {
     children: state.children,
     initialValues: props.location.state ? props.location.state.child : null

@@ -13,18 +13,20 @@ import ChildList from './components/ChildList';
 import ChildDetail from './components/ChildDetail';
 import ChildForm from './components/ChildForm';
 import Login from './components/Login';
+import Logout from './components/Logout';
 
 class App extends Component {
 
   //Connect to action child to call api
   componentDidMount() {
-    this.props.childAction.fetchProfiles();
+
+      this.props.childAction.fetchProfiles();
+
   }
 
   render() {
-    // console.log('in App >>> props', this.props);
+    console.log('APP PROPS', this.props);
     const history = createBrowserHistory();
-
     return (
       <Router history={history}>
         <div className="container-fluid">
@@ -42,6 +44,7 @@ class App extends Component {
                 <div className="col">
                   <Switch>
                     <Route exact path="/" component={Login} />
+                    <Route exact path="/signout" component={Logout} />
                     <Route exact path="/childList" component={ChildList} />
                     <Route exact path="/childDetail/:id" component={ChildDetail} />
                     <Route exact path="/child/:id" component={ChildForm} />
@@ -56,6 +59,8 @@ class App extends Component {
 
   }
 }
+
+
 
 //Call the state from redux store
 function mapDispatchToProps(dispatch) {

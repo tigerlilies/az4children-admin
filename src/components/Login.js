@@ -8,7 +8,6 @@ import { Field, reduxForm } from 'redux-form';
 import * as childAction from '../actions/child';
 import * as authAction from '../actions/auth';
 
-
 const required = value => (value ? undefined : "This field is required");
 
 const renderField = (
@@ -39,19 +38,23 @@ const renderField = (
 class Login extends Component {
 
   handleFormSubmit(values) {
-    // console.log("Login HandleFormSubmit", values);
-    // console.log("Longin HandleForm Props", this.props)
-    // Need to do something to log user in
-    this.props.authAction.signinUser(values).then(() => {
-      this.props.childAction.fetchProfiles();
-      this.props.history.push("/childList")
-    });
+    // Provide email and password to log in
+    this.props.authAction.signinUser(values, this.props.history, this.props.childAction.fetchProfiles())
   }
 
+  renderAlert() {
+    if (this.props.errorMessage) {
+      return (
+        <div className="alert alert-danger">
+          <strong>Oops!</strong>{this.props.errorMessage}
+        </div>
+      )
+    }
+  }
 
   render() {
-    const { handleSubmit} = this.props;
-
+    const { handleSubmit, authenticated } = this.props;
+    console.log("LogIn Props", this.props)
     return (
     <div className="container">
       <br />
@@ -84,6 +87,7 @@ class Login extends Component {
               />
             </div>
           </div>
+          {this.renderAlert()}
             <div className="form-group">
               <div className="col-lg-10 col-lg-offset-2">
                 <button type="submit" className="btn btn-primary">Submit</button>
@@ -97,8 +101,19 @@ class Login extends Component {
   }
 }
 
+//Connect with reducer and use as props
+function mapStateToProps(state) {
+  // console.log("mapStateToProps PROPS", props)
+  return {
+    auth: state.auth,
+    authenticated: state.auth.authenticated
+  };
+}
+
+
 //Connect with action.
 function mapDispatchToProps(dispatch) {
+  // console.log("LogInDispath", dispatch)
   return {
     childAction: bindActionCreators(childAction, dispatch),
     authAction: bindActionCreators(authAction, dispatch)
@@ -106,7 +121,7 @@ function mapDispatchToProps(dispatch) {
 }
 
 
-export default connect(null,mapDispatchToProps)(reduxForm({
+export default connect(mapStateToProps,mapDispatchToProps)(reduxForm({
   form: 'signin',
   fields: ['email', 'password']
 })(Login));
