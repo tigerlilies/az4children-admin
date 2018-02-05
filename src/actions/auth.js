@@ -3,17 +3,17 @@ import config from '../config';
 import {
   AUTH_USER,
   UNAUTH_USER,
-  AUTH_ERROR
+  // AUTH_ERROR
 } from './types';
 
 const API_URL = config.API_URL;
 
 // Header for jwt token
-const head = {
-                headers: {
-                  authorization : localStorage.getItem('token')
-                }
-              }
+// const head = {
+//   headers: {
+//     authorization : localStorage.getItem('token')
+//   }
+// }
 
 // export const authUser = () => {
 //   return ({

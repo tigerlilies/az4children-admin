@@ -24,7 +24,6 @@ const renderField = (
   meta: { touched, error, warning }
 }) => (
   <div>
-    <label>{label}</label>
     <div>
       <input
         {...input}
@@ -39,6 +38,7 @@ const renderField = (
   </div>
 );
 
+/*
 const renderSelectField = ({
   input,
   label,
@@ -56,6 +56,7 @@ const renderSelectField = ({
     </div>
   </div>
 );
+*/
 
 const renderDatePicker = (
 {

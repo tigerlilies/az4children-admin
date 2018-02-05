@@ -14,44 +14,48 @@ const API_URL = config.API_URL;
 export const fetchProfiles = (token) => {
   return ({
     type: 'CHILD',
-    payload: axios.get(`${API_URL}/api/profiles`, {
-                    headers: {
-                      authorization : token
-                    }
-                  })
+    payload:
+      axios.get(`${API_URL}/api/profiles`, {
+        headers: {
+          authorization : token
+        }
+      })
   });
 }
 
 export const addChild = (child ,token) => {
   return ({
     type: 'CHILD_ADD',
-    payload: axios.post(`${API_URL}/api/profiles`, child, {
-                    headers: {
-                      authorization : token
-                    }
-                  })
+    payload:
+      axios.post(`${API_URL}/api/profiles`, child, {
+        headers: {
+          authorization : token
+        }
+      })
   });
 }
 
 export const deleteChild = (id, child,token) => {
   return ({
     type: 'CHILD_DELETE',
-    payload: axios.delete(`${API_URL}/api/profiles/${id}`,  {
-                    headers: {
-                      authorization : token
-                    }
-                  })
+    payload:
+      axios.delete(`${API_URL}/api/profiles/${id}`,  {
+        headers: {
+          authorization : token
+        }
+      })
   });
 }
 
 export const updateChild = (id, child, token) => {
   return ({
     type: 'CHILD_UPDATE',
-    payload: axios.patch(`${API_URL}/api/profiles/${id}`, child, {
-                    headers: {
-                      authorization : token
-                    }
-                  }
-                )
+    payload:
+      axios.patch(`${API_URL}/api/profiles/${id}`, child, {
+          headers: {
+            authorization : token
+          }
+        }
+      )
   });
 }

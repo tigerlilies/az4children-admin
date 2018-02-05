@@ -19,7 +19,6 @@ const renderField = (
   meta: { touched, error, warning }
 }) => (
   <div>
-    <label>{label}</label>
     <div>
       <input
         {...input}
@@ -61,8 +60,8 @@ class Login extends Component {
         <div className="col-md-5">
         <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
           <div className="form-group">
-            <label htmlFor="Email" className="col-lg-2 control-label">Email address:</label>
-            <div className="col-lg-10">
+            <label htmlFor="Email" className="control-label">Email address:</label>
+            <div>
               <Field
                name="email"
                component={renderField}
@@ -74,8 +73,8 @@ class Login extends Component {
             </div>
           </div>
           <div className="form-group">
-            <label htmlFor="Password" className="col-lg-2 control-label">Password:</label>
-            <div className="col-lg-10">
+            <label htmlFor="Password" className="control-label">Password:</label>
+            <div>
               <Field
                 name="password"
                 component={renderField}
@@ -88,7 +87,7 @@ class Login extends Component {
           </div>
           {this.renderAlert()}
             <div className="form-group">
-              <div className="col-lg-10 col-lg-offset-2">
+              <div className="col-lg-offset-2">
                 <button type="submit" className="btn btn-primary">Submit</button>
               </div>
             </div>
