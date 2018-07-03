@@ -5,5 +5,5 @@ import promises from 'redux-promise-middleware';
 import reduxThunk from 'redux-thunk';
 
 export default(initialState) => {
-  return createStore(rootReducer, applyMiddleware(logger, promises(), reduxThunk));
+  return createStore(rootReducer, applyMiddleware(promises(), reduxThunk));
 }

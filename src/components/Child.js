@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import * as childAction from '../actions/child';
 
 const Child = (props) => {
+  console.log("child component", props.child)
   let { id, firstname, lastname, age, gender } = props.child;
   return(
     <tr>

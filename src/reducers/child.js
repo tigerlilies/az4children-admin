@@ -1,7 +1,7 @@
 let initialState = [];
 
 export default (state=initialState, action) => {
-
+  console.log("Child Reducer", action.type)
   switch (action.type) {
 
     case 'CHILD_PENDING':
